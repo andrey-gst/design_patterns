@@ -1,7 +1,5 @@
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,7 +11,7 @@ public class CalcPage {
 
     public CalcPage(WebDriver driver){
         this.driver=driver;
-        wait = new WebDriverWait(driver, 15,50);
+        wait = new WebDriverWait(driver, 10,50);
         PageFactory.initElements(driver, this);
     }
 
@@ -40,7 +38,7 @@ public class CalcPage {
     @FindBy(css = "#select_option_376 > .md-text")
     WebElement selectMachineType;
 
-    @FindBy(css = ".ng-scope:nth-child(10) .md-container")
+    @FindBy(css = ".ng-scope:nth-child(11) .md-container")
     WebElement addGPU;
 
     @FindBy(css = "#select_value_label_408 > span:nth-child(1)")
@@ -68,7 +66,7 @@ public class CalcPage {
     @FindBy(css = "#select_option_100 > .md-text")
     WebElement selectCommitedUsage;
 
-    @FindBy(css = ".layout-align-end-start:nth-child(17) > .md-raised")
+    @FindBy(css = ".layout-align-end-start:nth-child(18) > .md-raised")
     WebElement clickAddToEstimate;
 
     @FindBy(id = "email_quote")
@@ -83,9 +81,14 @@ public class CalcPage {
     @FindBy(xpath = "//button[@aria-label='Send Email']")
     WebElement searchSendEmailButton;
 
+    public void CloudSite(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cloud-site")));
+    }
+
     public void NumberOfInstances(){
-        searchNumberOfInstances.click();
-        searchNumberOfInstances.sendKeys(Keys.ENTER, "4");
+        //Add actions implementation for mouse and keyboard
+        new Actions(driver).click(searchNumberOfInstances).build().perform();
+        new Actions(driver).sendKeys(searchNumberOfInstances, "4").build().perform();
     }
 
     public void OperationSystem(){

@@ -1,3 +1,4 @@
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,12 +25,18 @@ public class MainPage {
     WebElement clickCalcLink;
 
     public void searchCloudCalc(){
+        //Add JS Executor - Highlighting for Search field
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", searchInput);
         searchInput.sendKeys("Google Cloud Platform Pricing Calculator");
         searchInput.sendKeys(Keys.ENTER);
     }
 
     public void calcClick(){
-        wait.until(ExpectedConditions.elementToBeClickable(clickCalcLink)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(clickCalcLink));
+        //Add JS Executor - click element
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].click();", clickCalcLink);
     }
 
 }
