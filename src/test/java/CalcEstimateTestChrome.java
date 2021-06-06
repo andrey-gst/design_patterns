@@ -1,19 +1,37 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class CalcEstimateTest {
+@Test
+public class CalcEstimateTestChrome {
     static WebDriver driver;
 
+    @Test(groups = "parallel")
     public static void main(String[] args) throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+
+        //Add new code for Selenium Grid
+        ChromeOptions options = new ChromeOptions();
+        try {
+            driver = new RemoteWebDriver(new 	URL("http://localhost:4444/wd/hub"), options);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://cloud.google.com/");
@@ -47,7 +65,7 @@ public class CalcEstimateTest {
         ((JavascriptExecutor)driver).executeScript("window.open('about:blank', '-blank')");
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
-        driver.get("https://10minutemail.com/");
+        driver.get("https://temp-mail.org/ru/10minutemail");
         Thread.sleep(5000);
 
         TempPg.CopyEmailButton();
