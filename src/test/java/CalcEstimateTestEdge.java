@@ -19,16 +19,16 @@ public class CalcEstimateTestEdge {
 
     @Test(groups = "parallel")
     public static void main(String[] args) throws InterruptedException {
-//        WebDriverManager.edgedriver().setup();
-//        driver = new EdgeDriver();
+        WebDriverManager.edgedriver().setup();
+        driver = new EdgeDriver();
 
         //Add new code for Selenium Grid
-        EdgeOptions options = new EdgeOptions();
-        try {
-            driver = new RemoteWebDriver(new 	URL("http://localhost:4444/wd/hub"), options);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+//        EdgeOptions options = new EdgeOptions();
+//        try {
+//            driver = new RemoteWebDriver(new 	URL("http://localhost:4444/wd/hub"), options);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
 
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

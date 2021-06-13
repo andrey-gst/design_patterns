@@ -5,15 +5,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CalcPage {
-    final WebDriver driver;
-    private WebDriverWait wait;
-
-    public CalcPage(WebDriver driver){
-        this.driver=driver;
-        wait = new WebDriverWait(driver, 10,50);
-        PageFactory.initElements(driver, this);
-    }
+public class CalcPage extends AbstractPage {
+//    final WebDriver driver;
+//    private WebDriverWait wait;
+//
+//    public CalcPage(WebDriver driver){
+//        this.driver=driver;
+//        wait = new WebDriverWait(driver, 10,50);
+//        PageFactory.initElements(driver, this);
+//    }
 
     @FindBy(id = "input_66")
     WebElement searchNumberOfInstances;
@@ -160,4 +160,8 @@ public class CalcPage {
         searchSendEmailButton.click();
     }
 
+    @Override
+    protected AbstractPage openPage() {
+        return null;
+    }
 }

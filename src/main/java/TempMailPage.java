@@ -7,17 +7,17 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TempMailPage {
-    final WebDriver driver;
-    private WebDriverWait wait;
-    JavascriptExecutor js;
-
-    public TempMailPage(WebDriver driver){
-        this.driver=driver;
-        wait = new WebDriverWait(driver, 15, 50);
-        PageFactory.initElements(driver, this);
-        js = (JavascriptExecutor) driver;
-    }
+public class TempMailPage extends AbstractPage {
+//    final WebDriver driver;
+//    private WebDriverWait wait;
+//    JavascriptExecutor js;
+//
+//    public TempMailPage(WebDriver driver){
+//        this.driver=driver;
+//        wait = new WebDriverWait(driver, 15, 50);
+//        PageFactory.initElements(driver, this);
+//        js = (JavascriptExecutor) driver;
+//    }
 
 
     @FindBy(css = "div.input-box-col.hidden-xs-sm > button")

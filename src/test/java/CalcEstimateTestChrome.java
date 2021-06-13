@@ -21,16 +21,16 @@ public class CalcEstimateTestChrome {
 
     @Test(groups = "parallel")
     public static void main(String[] args) throws InterruptedException {
-//        WebDriverManager.chromedriver().setup();
-//        driver = new ChromeDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
 
         //Add new code for Selenium Grid
-        ChromeOptions options = new ChromeOptions();
-        try {
-            driver = new RemoteWebDriver(new 	URL("http://localhost:4444/wd/hub"), options);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+//        ChromeOptions options = new ChromeOptions();
+//        try {
+//            driver = new RemoteWebDriver(new 	URL("http://localhost:4444/wd/hub"), options);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
 
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
