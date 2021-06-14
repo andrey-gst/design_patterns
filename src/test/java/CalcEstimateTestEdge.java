@@ -35,29 +35,29 @@ public class CalcEstimateTestEdge {
         driver.get("https://cloud.google.com/");
         driver.manage().window().maximize();
 
-        MainPage MainPg = PageFactory.initElements(driver, MainPage.class);
-        CalcPage CalcPg = PageFactory.initElements(driver, CalcPage.class);
-        TempMailPage TempPg = PageFactory.initElements(driver, TempMailPage.class);
+        MainPage mainPg = PageFactory.initElements(driver, MainPage.class);
+        CalcPage calcPg = PageFactory.initElements(driver, CalcPage.class);
+        TempMailPage tempPg = PageFactory.initElements(driver, TempMailPage.class);
 
-        MainPg.searchCloudCalc();
-        MainPg.calcClick();
+        mainPg.searchCloudCalc();
+        mainPg.calcClick();
 
-        CalcPg.CloudSite();
+        calcPg.cloudSite();
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
-        CalcPg.NumberOfInstances();
-        CalcPg.OperationSystem();
-        CalcPg.MachineClass();
-        CalcPg.Series();
-        CalcPg.MachineType();
-        CalcPg.AddGPU();
-        CalcPg.NumberOfGPU();
-        CalcPg.GPUType();
-        CalcPg.LocalSSD();
-        CalcPg.DatacenterLocation();
-        CalcPg.CommitedUsage();
-        CalcPg.AddToEstimate();
-        CalcPg.EmailEstimateButton();
+        calcPg.setNumberOfInstances();
+        calcPg.setOperationSystem();
+        calcPg.setMachineClass();
+        calcPg.setSeries();
+        calcPg.setMachineType();
+        calcPg.setAddGPU();
+        calcPg.setNumberOfGPU();
+        calcPg.setGPUType();
+        calcPg.setLocalSSD();
+        calcPg.setDatacenterLocation();
+        calcPg.setCommitedUsage();
+        calcPg.setAddToEstimate();
+        calcPg.setEmailEstimateButton();
 
         // Open site 10minutemail.com
         ((JavascriptExecutor)driver).executeScript("window.open('about:blank', '-blank')");
@@ -66,7 +66,7 @@ public class CalcEstimateTestEdge {
         driver.get("https://temp-mail.org/ru/10minutemail");
         Thread.sleep(5000);
 
-        TempPg.CopyEmailButton();
+        tempPg.copyEmailButton();
 
         // Back to Google Cloud Calculator
         driver.switchTo().window(tabs.get(0));
@@ -74,14 +74,14 @@ public class CalcEstimateTestEdge {
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
 
-        CalcPg.EmailForm();
-        CalcPg.EmailField();
-        CalcPg.SendEmailButton();
+        calcPg.setEmailForm();
+        calcPg.setEmailField();
+        calcPg.clickSendEmailButton();
 
         // Switch to 10minutemail.com
         driver.switchTo().window(tabs.get(1));
 
-        TempPg.SearchEmail();
+        tempPg.searchEmail();
 
         Assert.assertEquals(driver.getPageSource().contains("USD 1,082.77"), true, "Estimation is not match!" );
 
