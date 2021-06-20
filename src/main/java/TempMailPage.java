@@ -7,7 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TempMailPage  {
+import java.util.ArrayList;
+
+public class TempMailPage {
     final WebDriver driver;
     private WebDriverWait wait;
     JavascriptExecutor js;
@@ -35,6 +37,26 @@ public class TempMailPage  {
         js.executeScript("window.scrollTo(0,76)");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Google Cloud Platform Price Estimate")));
         searchEmail.click();
+    }
+
+    public String findElement2(){
+        return driver.findElement(By.xpath("//*[@id='tm-body']//td[2]/h3")).getText();
+    }
+
+    public void openNewTab(){
+        ((JavascriptExecutor)driver).executeScript("window.open('about:blank', '-blank')");
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+    }
+
+    public void backToCalcTab(){
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(0));
+    }
+
+    public void backToMailTab(){
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
     }
 
 }

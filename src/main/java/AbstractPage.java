@@ -9,7 +9,7 @@ public abstract class AbstractPage {
     protected WebDriverWait wait;
     JavascriptExecutor js;
 
-    protected abstract AbstractPage openPage();
+//    protected abstract AbstractPage openPage();
     protected final int WAIT_TIMEOUT_SECONDS = 10;
 
     protected AbstractPage(WebDriver driver){

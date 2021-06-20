@@ -1,7 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -15,12 +13,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-@Test
+
 public class CalcEstimateTestChrome {
     static WebDriver driver;
 
     @Test(groups = "parallel")
-    public static void main(String[] args) throws InterruptedException {
+    public static void main() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 
@@ -45,8 +43,7 @@ public class CalcEstimateTestChrome {
         mainPg.calcClick();
 
         calcPg.cloudSite();
-        driver.switchTo().frame(0);
-        driver.switchTo().frame("myFrame");
+        calcPg.switchToFrame();
         calcPg.setNumberOfInstances();
         calcPg.setOperationSystem();
         calcPg.setMachineClass();
@@ -60,32 +57,39 @@ public class CalcEstimateTestChrome {
         calcPg.setCommitedUsage();
         calcPg.setAddToEstimate();
         calcPg.setEmailEstimateButton();
+        //Try to move find element to CalcPage - now isn't work
+//        calcPg.findElement1();
+
+        String Element1 = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText();
+        String Element1Replace = Element1.replaceFirst("Total Estimated Cost: ", "");
+        String Element1Replace2 = Element1Replace.replace(" per 1 month", "");
 
         // Open site 10minutemail.com
-        ((JavascriptExecutor)driver).executeScript("window.open('about:blank', '-blank')");
-        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
+        tempPg.openNewTab();
         driver.get("https://temp-mail.org/ru/10minutemail");
-        Thread.sleep(5000);
 
         tempPg.copyEmailButton();
 
         // Back to Google Cloud Calculator
-        driver.switchTo().window(tabs.get(0));
+        tempPg.backToCalcTab();
 
-        driver.switchTo().frame(0);
-        driver.switchTo().frame("myFrame");
+        calcPg.switchToFrame();
 
         calcPg.setEmailForm();
         calcPg.setEmailField();
         calcPg.clickSendEmailButton();
 
         // Switch to 10minutemail.com
-        driver.switchTo().window(tabs.get(1));
+        tempPg.backToMailTab();
 
         tempPg.searchEmail();
+        //Try to move find element 2 to TempPage - now isn't work
+//        tempPg.findElement2();
+        String Element2 = driver.findElement(By.xpath("//*[@id='tm-body']//td[2]/h3")).getText();
 
-        Assert.assertEquals(driver.getPageSource().contains("USD 1,082.77"), true, "Estimation is not match!" );
+        //Try to assert findElement2 and findElement1 - now isn't work
+//        Assert.assertTrue(tempPg.findElement2().equals(calcPg.findElement1()));
+        Assert.assertTrue(Element2.equals(Element1Replace2), "Estimate not match!");
 
         driver.quit();
     }
