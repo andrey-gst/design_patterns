@@ -61,9 +61,9 @@ public class CalcEstimateTestEdge {
         //Try to move find element to CalcPage - now isn't work
 //        calcPg.findElement1();
 
-        String Element1 = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText();
-        String Element1Replace = Element1.replaceFirst("Total Estimated Cost: ", "");
-        String Element1Replace2 = Element1Replace.replace(" per 1 month", "");
+        String Element1 = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText().
+                replace("Total Estimated Cost: ", "").
+                replace(" per 1 month", "");
 
         // Open site 10minutemail.com
         tempPg.openNewTab();
@@ -90,7 +90,7 @@ public class CalcEstimateTestEdge {
 
         //Try to assert findElement2 and findElement1 - now isn't work
 //        Assert.assertTrue(tempPg.findElement2().equals(calcPg.findElement1()));
-        Assert.assertTrue(Element2.equals(Element1Replace2), "Estimate not match!");
+        Assert.assertTrue(Element2.equals(Element1), "Estimate not match!");
 
         driver.quit();
     }

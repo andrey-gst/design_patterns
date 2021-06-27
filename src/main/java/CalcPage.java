@@ -1,75 +1,69 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CalcPage {
-    final WebDriver driver;
+public class CalcPage extends AbstractPage{
+    private final String BASE_URL = "https://cloud.google.com/";
     private WebDriverWait wait;
-    private String Element1;
-    private String Element1Replace;
-
-    @CacheLookup
-    private String Element2Replace;
 
     public CalcPage(WebDriver driver){
-        this.driver=driver;
-        wait = new WebDriverWait(driver, 10,50);
-        PageFactory.initElements(driver, this);
+        super(driver);
+        wait = new WebDriverWait(this.driver, 10,50);
+        PageFactory.initElements(this.driver, this);
     }
 
-    @FindBy(id = "input_66")
+    @FindBy(id = "input_65")
     WebElement searchNumberOfInstances;
 
-    @FindBy(css = "#select_value_label_59 .md-text")
+    @FindBy(css = "#select_value_label_58 .md-text")
     WebElement searchOperationSystem;
-    @FindBy(css = "#select_option_68 > .md-text")
+    @FindBy(css = "#select_option_67 > .md-text")
     WebElement selectOperationSystem;
 
-    @FindBy(css = "#select_value_label_60 > span:nth-child(1)")
+    @FindBy(css = "#select_value_label_59 > span:nth-child(1)")
     WebElement searchMachineClass;
-    @FindBy(css = "#select_option_80 > .md-text")
+    @FindBy(css = "#select_option_79 > .md-text")
     WebElement selectMachineClass;
 
-    @FindBy(xpath = "//*[@id='select_value_label_62']/span[1]/div")
+    @FindBy(xpath = "//*[@id='select_value_label_61']/span[1]/div")
     WebElement searchSeries;
-    @FindBy(id = "select_option_195")
+    @FindBy(id = "select_option_194")
     WebElement selectSeries;
 
-    @FindBy(css = "#select_value_label_63 .md-text")
+    @FindBy(css = "#select_value_label_62 .md-text")
     WebElement searchMachineType;
-    @FindBy(css = "#select_option_376 > .md-text")
+    @FindBy(css = "#select_option_378 > .md-text")
     WebElement selectMachineType;
 
     @FindBy(css = ".ng-scope:nth-child(11) .md-container")
     WebElement addGPU;
 
-    @FindBy(css = "#select_value_label_408 > span:nth-child(1)")
+    @FindBy(css = "#select_value_label_410 > span:nth-child(1)")
     WebElement searchNumberOfGPU;
-    @FindBy(id = "select_option_415")
+    @FindBy(id = "select_option_417")
     WebElement selectNumberOfGPU;
 
-    @FindBy(css = "#select_value_label_409 .md-text")
+    @FindBy(css = "#select_value_label_411 .md-text")
     WebElement searchGPUType;
-    @FindBy(css = "#select_option_422 > .md-text")
+    @FindBy(css = "#select_option_424 > .md-text")
     WebElement selectGPUType;
 
-    @FindBy(css = "#select_value_label_370 > span:nth-child(1)")
+    @FindBy(css = "#select_value_label_372 > span:nth-child(1)")
     WebElement searchLocalSSD;
-    @FindBy(css = "#select_option_397 > .md-text")
+    @FindBy(css = "#select_option_399 > .md-text")
     WebElement selectLocalSSD;
 
-    @FindBy(css = "#select_value_label_64 .md-text")
+    @FindBy(css = "#select_value_label_63 .md-text")
     WebElement searchDatacenterLocation;
-    @FindBy(css = "#select_option_212 > .md-text")
+    @FindBy(css = "#select_option_211 > .md-text")
     WebElement selectDatacenterLocation;
 
-    @FindBy(css = "#select_value_label_65 > span:nth-child(1)")
+    @FindBy(css = "#select_value_label_64 > span:nth-child(1)")
     WebElement searchCommitedUsage;
-    @FindBy(css = "#select_option_99 > .md-text")
+    @FindBy(css = "#select_option_98 > .md-text")
     WebElement selectCommitedUsage;
 
     @FindBy(css = ".layout-align-end-start:nth-child(18) > .md-raised")
@@ -81,14 +75,11 @@ public class CalcPage {
     @FindBy(name = "emailForm")
     WebElement element;
 
-    @FindBy(id = "input_493")
+    @FindBy(id = "input_495")
     WebElement searchEmailField;
 
     @FindBy(xpath = "//button[@aria-label='Send Email']")
     WebElement searchSendEmailButton;
-
-//    @FindBy(xpath = "//*[@id='resultBlock']//h2/b")
-//    String Element1;
 
     public void cloudSite(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cloud-site")));
@@ -170,9 +161,9 @@ public class CalcPage {
     }
 
     public String findElement1(){
-        Element1 = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText();
-        Element1Replace = Element1.replaceFirst("Total Estimated Cost: ", "");
-        return Element2Replace = Element1Replace.replace(" per 1 month", "");
+        return driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText()
+                .replace("Total Estimated Cost: ", "")
+                .replace(" per 1 month", "");
     }
 
     public void switchToFrame(){
@@ -180,10 +171,9 @@ public class CalcPage {
         driver.switchTo().frame("myFrame");
     }
 
-
-
-//    @Override
-//    protected AbstractPage openPage() {
-//        return null;
-//    }
+    @Override
+    protected CalcPage openPage() {
+        driver.navigate().to(BASE_URL);
+        return this;
+    }
 }

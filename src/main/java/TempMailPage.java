@@ -9,18 +9,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 
-public class TempMailPage {
-    final WebDriver driver;
+public class TempMailPage extends AbstractPage{
     private WebDriverWait wait;
     JavascriptExecutor js;
 
     public TempMailPage(WebDriver driver){
-        this.driver=driver;
+        super(driver);
         wait = new WebDriverWait(driver, 15, 50);
         PageFactory.initElements(driver, this);
         js = (JavascriptExecutor) driver;
     }
-
 
     @FindBy(css = "div.input-box-col.hidden-xs-sm > button")
     WebElement searchCopyEmailButton;
@@ -57,6 +55,11 @@ public class TempMailPage {
     public void backToMailTab(){
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+    }
+
+    @Override
+    protected TempMailPage openPage() {
+        return this;
     }
 
 }

@@ -7,15 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MainPage  {
+public class MainPage extends AbstractPage {
 
-    final WebDriver driver;
     private WebDriverWait wait;
 
     public MainPage(WebDriver driver){
-        this.driver=driver;
-        wait = new WebDriverWait(driver, 15, 50);
-        PageFactory.initElements(driver, this);
+        super(driver);
+        wait = new WebDriverWait(this.driver, 15, 50);
+        PageFactory.initElements(this.driver, this);
     }
 
     @FindBy(name = "q")
@@ -37,6 +36,11 @@ public class MainPage  {
         //Add JS Executor - click element
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].click();", clickCalcLink);
+    }
+
+    @Override
+    protected MainPage openPage() {
+        return this;
     }
 
 }

@@ -18,7 +18,7 @@ public class CalcEstimateTestChrome {
     static WebDriver driver;
 
     @Test(groups = "parallel")
-    public static void main() {
+    public void estimateTest() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 
@@ -35,7 +35,7 @@ public class CalcEstimateTestChrome {
         driver.get("https://cloud.google.com/");
         driver.manage().window().maximize();
 
-        MainPage mainPg = PageFactory.initElements(driver, MainPage.class);
+        MainPage mainPg = PageFactory.initElements(driver, MainPage.class); //replace with constrator
         CalcPage calcPg = PageFactory.initElements(driver, CalcPage.class);
         TempMailPage tempPg = PageFactory.initElements(driver, TempMailPage.class);
 
@@ -60,9 +60,9 @@ public class CalcEstimateTestChrome {
         //Try to move find element to CalcPage - now isn't work
 //        calcPg.findElement1();
 
-        String Element1 = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText();
-        String Element1Replace = Element1.replaceFirst("Total Estimated Cost: ", "");
-        String Element1Replace2 = Element1Replace.replace(" per 1 month", "");
+        String calcEstimateCost = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText().
+                replace("Total Estimated Cost: ", "").
+                replace(" per 1 month", "");
 
         // Open site 10minutemail.com
         tempPg.openNewTab();
@@ -85,11 +85,11 @@ public class CalcEstimateTestChrome {
         tempPg.searchEmail();
         //Try to move find element 2 to TempPage - now isn't work
 //        tempPg.findElement2();
-        String Element2 = driver.findElement(By.xpath("//*[@id='tm-body']//td[2]/h3")).getText();
+        String mailEstimateCost = driver.findElement(By.xpath("//*[@id='tm-body']//td[2]/h3")).getText();
 
         //Try to assert findElement2 and findElement1 - now isn't work
 //        Assert.assertTrue(tempPg.findElement2().equals(calcPg.findElement1()));
-        Assert.assertTrue(Element2.equals(Element1Replace2), "Estimate not match!");
+        Assert.assertTrue(mailEstimateCost.equals(calcEstimateCost), "Estimate not match!");
 
         driver.quit();
     }
