@@ -1,26 +1,28 @@
+import driver.DriverSingleton;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import model.CommitedUsage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import page.CalcPage;
+import page.MainPage;
+import page.TempMailPage;
+import service.CommitedUsageCreator;
 
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
-public class CalcEstimateTestChrome {
-    static WebDriver driver;
+public class CalcEstimateTestChrome extends CommonConditions {
+//    static WebDriver driver;
 
     @Test(groups = "parallel")
     public void estimateTest() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+//        driver = DriverSingleton.getDriver();
 
         //Add new code for Selenium Grid
 //        ChromeOptions options = new ChromeOptions();
@@ -57,7 +59,7 @@ public class CalcEstimateTestChrome {
         calcPg.setCommitedUsage();
         calcPg.setAddToEstimate();
         calcPg.setEmailEstimateButton();
-        //Try to move find element to CalcPage - now isn't work
+        //Try to move find element to page.CalcPage - now isn't work
 //        calcPg.findElement1();
 
         String calcEstimateCost = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText().
@@ -91,7 +93,7 @@ public class CalcEstimateTestChrome {
 //        Assert.assertTrue(tempPg.findElement2().equals(calcPg.findElement1()));
         Assert.assertTrue(mailEstimateCost.equals(calcEstimateCost), "Estimate not match!");
 
-        driver.quit();
+//        driver.quit();
     }
 
 }

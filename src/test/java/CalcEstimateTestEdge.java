@@ -1,17 +1,14 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import page.CalcPage;
+import page.MainPage;
+import page.TempMailPage;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
@@ -58,7 +55,7 @@ public class CalcEstimateTestEdge {
         calcPg.setCommitedUsage();
         calcPg.setAddToEstimate();
         calcPg.setEmailEstimateButton();
-        //Try to move find element to CalcPage - now isn't work
+        //Try to move find element to page.CalcPage - now isn't work
 //        calcPg.findElement1();
 
         String Element1 = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText().

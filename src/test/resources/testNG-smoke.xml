@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke" >
+    <test name="Calculator Estimate Smoke Test">
+        <classes>
+            <class name="CalcEstimateTestChrome"></class>
+        </classes>
+    </test>
+</suite>
