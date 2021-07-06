@@ -7,3 +7,6 @@ How to run Selenium Grid:
 4. Run Selenuim Grid Hub - hub_3.141.59.bat
 5. Run Selenuim Grid Nodes - se-node_xxx-3.141.59.bat
 Done!
+
+How to run Framework:
+Run from command line: mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src\test\resources\testNG.xml -Dusage=1year clean test
