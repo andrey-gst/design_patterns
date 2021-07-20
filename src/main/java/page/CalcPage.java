@@ -7,41 +7,38 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static service.CommitedUsageCreator.COMMITED_USAGE;
 
 public class CalcPage extends AbstractPage{
     private final String BASE_URL = "https://cloud.google.com/";
-    private WebDriverWait wait;
 
     private final Logger logger = LogManager.getRootLogger();
 
     public CalcPage(WebDriver driver){
         super(driver);
-        wait = new WebDriverWait(this.driver, 10,50);
         PageFactory.initElements(this.driver, this);
     }
 
-    @FindBy(id = "input_66")
+    @FindBy(id = "input_65")
     WebElement searchNumberOfInstances;
 
-    @FindBy(css = "#select_value_label_59 .md-text")
+    @FindBy(css = "#select_value_label_58 .md-text")
     WebElement searchOperationSystem;
-    @FindBy(css = "#select_option_68 > .md-text")
+    @FindBy(css = "#select_option_67 > .md-text")
     WebElement selectOperationSystem;
 
-    @FindBy(css = "#select_value_label_60 > span:nth-child(1)")
+    @FindBy(css = "#select_value_label_59 > span:nth-child(1)")
     WebElement searchMachineClass;
     @FindBy(css = "#select_option_80 > .md-text")
     WebElement selectMachineClass;
 
-    @FindBy(xpath = "//*[@id='select_value_label_62']/span[1]/div")
+    @FindBy(xpath = "//*[@id='select_value_label_61']/span[1]/div")
     WebElement searchSeries;
     @FindBy(id = "select_option_195")
     WebElement selectSeries;
 
-    @FindBy(css = "#select_value_label_63 .md-text")
+    @FindBy(css = "#select_value_label_62 .md-text")
     WebElement searchMachineType;
     @FindBy(css = "#select_option_382 > .md-text")
     WebElement selectMachineType;
@@ -64,12 +61,12 @@ public class CalcPage extends AbstractPage{
     @FindBy(css = "#select_option_403 > .md-text")
     WebElement selectLocalSSD;
 
-    @FindBy(css = "#select_value_label_64 .md-text")
+    @FindBy(css = "#select_value_label_63 .md-text")
     WebElement searchDatacenterLocation;
     @FindBy(css = "#select_option_212 > .md-text")
     WebElement selectDatacenterLocation;
 
-    @FindBy(css = "#select_value_label_65 > span:nth-child(1)")
+    @FindBy(css = "#select_value_label_64 > span:nth-child(1)")
     WebElement searchCommitedUsage;
     @FindBy(css = "#select_option_99 > .md-text")
     WebElement selectCommitedUsageOneYear;
@@ -91,6 +88,9 @@ public class CalcPage extends AbstractPage{
 
     @FindBy(xpath = "//button[@aria-label='Send Email']")
     WebElement searchSendEmailButton;
+
+    @FindBy(xpath = "//*[@id='resultBlock']//h2/b")
+    WebElement searchCalcEstimate;
 
     public void cloudSite(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cloud-site")));
@@ -172,8 +172,8 @@ public class CalcPage extends AbstractPage{
         searchSendEmailButton.click();
     }
 
-    public String findElement1(){
-        return driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText()
+    public String calcEstimate(){ 
+        return searchCalcEstimate.getText()
                 .replace("Total Estimated Cost: ", "")
                 .replace(" per 1 month", "");
     }

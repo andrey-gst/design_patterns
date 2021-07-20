@@ -7,17 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 
 public class TempMailPage extends AbstractPage{
-    private WebDriverWait wait;
     JavascriptExecutor js;
+    private final String BASE_URL = "https://temp-mail.org/ru/10minutemail";
 
     public TempMailPage(WebDriver driver){
         super(driver);
-        wait = new WebDriverWait(driver, 15, 50);
         PageFactory.initElements(driver, this);
         js = (JavascriptExecutor) driver;
     }
@@ -27,6 +25,9 @@ public class TempMailPage extends AbstractPage{
 
     @FindBy(linkText = "Google Cloud Platform Price Estimate")
     WebElement searchEmail;
+
+    @FindBy(xpath = "//*[@id='tm-body']//td[2]/h3")
+    WebElement searchMailEstimate;
 
     public void copyEmailButton(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mail")));
@@ -39,8 +40,8 @@ public class TempMailPage extends AbstractPage{
         searchEmail.click();
     }
 
-    public String findElement2(){
-        return driver.findElement(By.xpath("//*[@id='tm-body']//td[2]/h3")).getText();
+    public String mailEstimate(){
+        return searchMailEstimate.getText();
     }
 
     public void openNewTab(){
@@ -61,6 +62,7 @@ public class TempMailPage extends AbstractPage{
 
     @Override
     protected TempMailPage openPage() {
+        driver.navigate().to(BASE_URL);
         return this;
     }
 
