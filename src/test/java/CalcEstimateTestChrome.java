@@ -51,7 +51,7 @@ public class CalcEstimateTestChrome extends CommonConditions {
         calcPg.setAddToEstimate();
         calcPg.setEmailEstimateButton();
         //Try to move find element to page.CalcPage - now isn't work
-        calcPg.calcEstimate();
+//        calcPg.calcEstimate();
 
 //        String calcEstimateCost = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText().
 //                replace("Total Estimated Cost: ", "").

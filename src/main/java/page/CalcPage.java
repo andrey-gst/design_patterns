@@ -172,7 +172,7 @@ public class CalcPage extends AbstractPage{
         searchSendEmailButton.click();
     }
 
-    public String calcEstimate(){ 
+    public String calcEstimate(){
         return searchCalcEstimate.getText()
                 .replace("Total Estimated Cost: ", "")
                 .replace(" per 1 month", "");

@@ -14,9 +14,12 @@ import java.util.concurrent.TimeUnit;
 
 public class CalcEstimateTestEdge {
     static WebDriver driver;
+    MainPage mainPg;
+    CalcPage calcPg;
+    TempMailPage tempPg;
 
     @Test(groups = "parallel")
-    public static void main() {
+    public void estimateTest() {
         WebDriverManager.edgedriver().setup();
         driver = new EdgeDriver();
 
@@ -33,9 +36,9 @@ public class CalcEstimateTestEdge {
         driver.get("https://cloud.google.com/");
         driver.manage().window().maximize();
 
-        MainPage mainPg = PageFactory.initElements(driver, MainPage.class);
-        CalcPage calcPg = PageFactory.initElements(driver, CalcPage.class);
-        TempMailPage tempPg = PageFactory.initElements(driver, TempMailPage.class);
+        mainPg = new MainPage(driver);
+        calcPg = new CalcPage(driver);
+        tempPg = new TempMailPage(driver);
 
         mainPg.searchCloudCalc();
         mainPg.calcClick();
