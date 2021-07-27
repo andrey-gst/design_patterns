@@ -15,6 +15,7 @@ public class DriverSingleton {
     public static WebDriver getDriver(){
         if (null == driver){
             switch (System.getProperty("browser")){
+
                 case "edge": {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();

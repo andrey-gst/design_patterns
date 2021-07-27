@@ -40,7 +40,7 @@ public class TempMailPage extends AbstractPage{
         searchEmail.click();
     }
 
-    public String mailEstimate(){
+    public String getMailEstimate(){
         return searchMailEstimate.getText();
     }
 

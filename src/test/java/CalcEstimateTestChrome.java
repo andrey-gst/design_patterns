@@ -50,12 +50,6 @@ public class CalcEstimateTestChrome extends CommonConditions {
         calcPg.setCommitedUsage();
         calcPg.setAddToEstimate();
         calcPg.setEmailEstimateButton();
-        //Try to move find element to page.CalcPage - now isn't work
-//        calcPg.calcEstimate();
-
-//        String calcEstimateCost = driver.findElement(By.xpath("//*[@id='resultBlock']//h2/b")).getText().
-//                replace("Total Estimated Cost: ", "").
-//                replace(" per 1 month", "");
 
         // Open site 10minutemail.com
         tempPg.openNewTab();
@@ -76,15 +70,8 @@ public class CalcEstimateTestChrome extends CommonConditions {
         tempPg.backToMailTab();
 
         tempPg.searchEmail();
-        //Try to move find element 2 to TempPage - now isn't work
-//        tempPg.mailEstimate();
-//        String mailEstimateCost = driver.findElement(By.xpath("//*[@id='tm-body']//td[2]/h3")).getText();
 
-        //Try to assert findElement2 and findElement1 - now isn't work
-        Assert.assertTrue(tempPg.mailEstimate().equals(calcPg.calcEstimate()), "Estimate not match!");
-//        Assert.assertTrue(mailEstimateCost.equals(calcEstimateCost), "Estimate not match!"); //change to assertEquals
-
-//        driver.quit();
+        Assert.assertEquals(tempPg.getMailEstimate(), calcPg.getCalcEstimate(), "Estimate not match!");
     }
 
 }
