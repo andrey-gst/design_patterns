@@ -14,7 +14,11 @@ public class DriverSingleton {
 
     public static WebDriver getDriver(){
         if (null == driver){
-            switch (System.getProperty("browser")){
+            String setBrowser = System.getProperty("browser");
+            if (null == setBrowser){
+                setBrowser = "chrome";
+            }
+            switch (setBrowser){
 
                 case "edge": {
                     WebDriverManager.edgedriver().setup();

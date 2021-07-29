@@ -35,7 +35,7 @@ public class TempMailPage extends AbstractPage{
     }
 
     public void searchEmail(){
-        js.executeScript("window.scrollTo(0,76)");
+        js.executeScript("arguments[0].scrollIntoView();", searchEmail);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Google Cloud Platform Price Estimate")));
         searchEmail.click();
     }
