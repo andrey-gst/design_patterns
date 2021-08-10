@@ -5,11 +5,6 @@
             <class name="CalcEstimateTestChrome"></class>
         </classes>
     </test>
-    <test name="Calculator Estimate Tests Edge">
-        <classes>
-            <class name="CalcEstimateTestEdge"></class>
-        </classes>
-    </test>
 <!--        <groups>-->
 <!--            <run>-->
 <!--                <include name="parallel"/>-->
