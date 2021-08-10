@@ -60,6 +60,11 @@ public class TempMailPage extends AbstractPage{
         driver.switchTo().window(tabs.get(1));
     }
 
+    public TempMailPage open() {
+        driver.get(BASE_URL);
+        return this;
+    }
+
     @Override
     protected TempMailPage openPage() {
         driver.navigate().to(BASE_URL);

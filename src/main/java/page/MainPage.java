@@ -38,6 +38,11 @@ public class MainPage extends AbstractPage {
         jse.executeScript("arguments[0].click();", clickCalcLink);
     }
 
+    public MainPage open() {
+        driver.get(BASE_URL);
+        return this;
+    }
+
     @Override
     protected MainPage openPage() {
         driver.navigate().to(BASE_URL);
