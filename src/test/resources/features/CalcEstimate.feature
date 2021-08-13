@@ -1,5 +1,6 @@
 Feature: Google Calculator Estimate
 
+  @smoke
   Scenario: Comparison of Google Calculator Estimate from the site and from the mail
     Given I opened Google Cloud site
     When I search Google Cloud Platform Pricing Calculator
