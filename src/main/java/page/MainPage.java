@@ -1,3 +1,5 @@
+package page;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -5,17 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MainPage {
+public class MainPage extends AbstractPage {
 
-    final WebDriver driver;
-    private WebDriverWait wait;
+    private final String BASE_URL = "https://cloud.google.com/";
 
     public MainPage(WebDriver driver){
-        this.driver=driver;
-        wait = new WebDriverWait(driver, 15, 50);
-        PageFactory.initElements(driver, this);
+        super(driver);
+        PageFactory.initElements(this.driver, this);
     }
 
     @FindBy(name = "q")
@@ -37,6 +36,12 @@ public class MainPage {
         //Add JS Executor - click element
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].click();", clickCalcLink);
+    }
+
+    @Override
+    protected MainPage openPage() {
+        driver.navigate().to(BASE_URL);
+        return this;
     }
 
 }
