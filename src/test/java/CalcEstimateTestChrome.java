@@ -22,7 +22,7 @@ public class CalcEstimateTestChrome extends CommonConditions {
     TempMailPage tempPg;
     
     @Test(groups = "parallel")
-    public void estimateTest() {
+    public void estimateTest() throws InterruptedException {
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://cloud.google.com/");
@@ -54,7 +54,7 @@ public class CalcEstimateTestChrome extends CommonConditions {
         // Open site 10minutemail.com
         tempPg.openNewTab();
         driver.get("https://temp-mail.org/ru/10minutemail");
-
+        Thread.sleep(2500);
         tempPg.copyEmailButton();
 
         // Back to Google Cloud Calculator

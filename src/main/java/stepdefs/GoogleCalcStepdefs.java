@@ -1,9 +1,11 @@
 package stepdefs;
 
+import driver.DriverSingleton;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import page.CalcPage;
 import page.MainPage;
@@ -11,9 +13,11 @@ import page.TempMailPage;
 
 public class GoogleCalcStepdefs {
 
-    private CalcPage calcPage = new CalcPage();
-    private MainPage mainPage = new MainPage();
-    private TempMailPage tempMailPage = new TempMailPage();
+    private WebDriver driver = DriverSingleton.getDriver();
+
+    private CalcPage calcPage = new CalcPage(driver);
+    private MainPage mainPage = new MainPage(driver);
+    private TempMailPage tempMailPage = new TempMailPage(driver);
 
     @Given("I opened Google Cloud site")
     public void iOpenedGoogleCloudSite() {
@@ -69,8 +73,8 @@ public class GoogleCalcStepdefs {
 
     @Then("Calculator Estimate equals to Email Estimate")
     public void calculatorEstimateEqualsToEmailEstimate() {
-        String mailEstimate = new TempMailPage().getMailEstimate();
-        String calcEstimate = new CalcPage().getCalcEstimate();
+        String mailEstimate = tempMailPage.getMailEstimate();
+        String calcEstimate = calcPage.getCalcEstimate();
         Assert.assertEquals(mailEstimate,calcEstimate, "Estimate not match!");
     }
 }

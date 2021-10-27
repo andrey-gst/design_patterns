@@ -20,61 +20,61 @@ public class CalcPage extends AbstractPage{
         PageFactory.initElements(this.driver, this);
     }
 
-    @FindBy(id = "input_66")
+    @FindBy(name = "quantity")
     WebElement searchNumberOfInstances;
 
-    @FindBy(css = "#select_value_label_59 .md-text")
+    @FindBy(xpath = "//div[@class='md-text' and contains(text(), 'Free')]")
     WebElement searchOperationSystem;
-    @FindBy(css = "#select_option_68 > .md-text")
+    @FindBy(xpath = "//md-option[@value='free']")
     WebElement selectOperationSystem;
 
-    @FindBy(css = "#select_value_label_60 > span:nth-child(1)")
+    @FindBy(xpath = "//*[contains(text(),'Regular')]")
     WebElement searchMachineClass;
-    @FindBy(css = "#select_option_81 > .md-text")
+    @FindBy(xpath = "(//md-option[@value='regular'])[2]")
     WebElement selectMachineClass;
 
-    @FindBy(xpath = "//*[@id='select_value_label_62']/span[1]/div")
+    @FindBy(xpath = "//*[contains(text(),'E2')]")
     WebElement searchSeries;
-    @FindBy(id = "select_option_200")
+    @FindBy(xpath = "//md-option[@value='n1']")
     WebElement selectSeries;
 
-    @FindBy(css = "#select_value_label_63 .md-text")
+    @FindBy(xpath = "//*[contains(text(),'n1-standard-1 (vCPUs: 1, RAM: 3.75GB)')]")
     WebElement searchMachineType;
-    @FindBy(css = "#select_option_393 > .md-text")
+    @FindBy(xpath = "//md-option[@value='CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8']")
     WebElement selectMachineType;
 
-    @FindBy(css = ".ng-scope:nth-child(11) .md-container")
+    @FindBy(xpath = "//md-checkbox[@ng-model='listingCtrl.computeServer.addGPUs']")
     WebElement addGPU;
 
-    @FindBy(css = "#select_value_label_425 > span:nth-child(1)")
+    @FindBy(xpath = "(//md-select[@placeholder='Number of GPUs']//div[contains(text(),'0')])[1]")
     WebElement searchNumberOfGPU;
-    @FindBy(id = "select_option_433")
+    @FindBy(css = "md-option[value='1'][class='ng-scope md-ink-ripple'][ng-disabled]")
     WebElement selectNumberOfGPU;
 
-    @FindBy(css = "#select_value_label_426 .md-text")
+    @FindBy(xpath = "//div[1]/div[1]/md-input-container[2]/md-select/md-select-value/span[1]/div")
     WebElement searchGPUType;
-    @FindBy(css = "#select_option_439 > .md-text")
+    @FindBy(xpath = "//*[@class='md-text ng-binding' and contains(text(),'NVIDIA Tesla T4')]")
     WebElement selectGPUType;
 
-    @FindBy(css = "#select_value_label_387 > span:nth-child(1)")
+    @FindBy(xpath = "(//md-select[@placeholder='Local SSD']//div[contains(text(),'0')])[1]")
     WebElement searchLocalSSD;
-    @FindBy(css = "#select_option_414 > .md-text")
+    @FindBy(xpath = "//*[@class='md-text ng-binding' and contains(text(),'2x375 GB')]")
     WebElement selectLocalSSD;
 
-    @FindBy(css = "#select_value_label_64 .md-text")
+    @FindBy(xpath = "(//md-select[@placeholder='Datacenter location'])[1]")
     WebElement searchDatacenterLocation;
-    @FindBy(css = "#select_option_217 > .md-text")
+    @FindBy(xpath = "(//md-option[@value='europe-west3'])[3]")
     WebElement selectDatacenterLocation;
 
-    @FindBy(css = "#select_value_label_65 > span:nth-child(1)")
+    @FindBy(xpath = "(//md-select[@placeholder='Committed usage'])[1]")
     WebElement searchCommitedUsage;
-    @FindBy(css = "#select_option_100 > .md-text")
+    @FindBy(xpath = "(//*[@class='md-text' and contains(text(),'1 Year')])[2]")
     WebElement selectCommitedUsageOneYear;
-    @FindBy(css = "#select_option_100 > .md-text")
+    @FindBy(xpath = "(//*[@class='md-text' and contains(text(),'3 Years')])[2]")
     WebElement selectCommitedUsageThreeYears;
 
 
-    @FindBy(css = ".layout-align-end-start:nth-child(18) > .md-raised")
+    @FindBy(xpath = "(//button[@aria-label='Add to Estimate'])[1]")
     WebElement clickAddToEstimate;
 
     @FindBy(id = "email_quote")
@@ -83,7 +83,7 @@ public class CalcPage extends AbstractPage{
     @FindBy(name = "emailForm")
     WebElement element;
 
-    @FindBy(id = "input_510")
+    @FindBy(xpath = "//input[@type='email']")
     WebElement searchEmailField;
 
     @FindBy(xpath = "//button[@aria-label='Send Email']")

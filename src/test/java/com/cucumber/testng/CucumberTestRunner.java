@@ -8,7 +8,7 @@ import io.cucumber.testng.CucumberOptions;
         monochrome = true,
         tags = "@smoke",
         glue = "com.cucumber.testng",
-        features = "classpath:com/cucumber/testng/features")
+        features = "src/test/resources/features")
 
 public class CucumberTestRunner extends AbstractTestNGCucumberTests {
 }

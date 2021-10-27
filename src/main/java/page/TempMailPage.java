@@ -30,6 +30,7 @@ public class TempMailPage extends AbstractPage{
     WebElement searchMailEstimate;
 
     public void copyEmailButton(){
+        driver.getPageSource().contains("@");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mail")));
         searchCopyEmailButton.click();
     }
